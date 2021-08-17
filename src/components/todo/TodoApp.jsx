@@ -18,11 +18,14 @@ class LoginComponent extends Component {
         super(props);
         this.state = {
             username: 'dragon3',
-            password: ''
+            password: '',
+            hasLoginFailed: false,
+            showSuccessMessage: false
         }
         //this.handleUsernameChange = this.handleUsernameChange.bind(this);
         //this.handlePasswordChange = this.handlePasswordChange.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.loginClicked = this.loginClicked.bind(this);
         
     }
 
@@ -47,16 +50,50 @@ class LoginComponent extends Component {
     //    })
     //}
 
+    loginClicked() {
+        //console.log(this.state)
+        if(this.state.username==='dragon3' && this.state.password==='dummy') {
+            console.log('Successful!')
+            this.setState({
+                showSuccessMessage: true
+            })
+            
+        } else {
+            console.log("Failed")
+            this.setState({
+                hasLoginFailed: true
+            })
+        }
+    }
+
     render() {
         return(
             <div>
+                <ShowInvalidCredentials hasLoginFailed={this.state.hasLoginFailed} />
+                <ShowLoginMessage showSuccessMessage={this.state.showSuccessMessage} />
                 User Name: <input type="text" name="username" value={this.state.username} onChange={this.handleChange}/>
                 Password: <input type="password" name="password" value={this.state.password} onChange={this.handleChange}/>
-                <button>Login</button>
+                <button onClick={this.loginClicked}>Login</button>
             </div>
             
         )
     }
+}
+
+function ShowInvalidCredentials(props) {
+    if(props.hasLoginFailed) {
+        return <div>Invalid Credentials</div>
+
+    }
+    return null
+}
+
+function ShowLoginMessage(props) {
+    if(props.showSuccessMessage) {
+        return <div>Login Successful</div>
+
+    }
+    return null
 }
 
 export default TodoApp;
