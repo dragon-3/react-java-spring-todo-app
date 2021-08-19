@@ -11,7 +11,7 @@ class HeaderComponent extends Component {
         return (
             <header>
                 <nav className="navbar navbar-expand-md navbar-dark bg-dark">
-                    <div><a href="" className="navbar-brand">dragon3</a></div>
+                    <div><a href="https://github.com/dragon-3" className="navbar-brand">dragon3</a></div>
                     <ul className="navbar-nav">
                         {isUserLoggedIn && <li ><Link className="nav-link" to="/welcome/dragon3">Home</Link></li>}
                         {isUserLoggedIn && <li><Link className="nav-link" to="/todos">Todos</Link></li>}
