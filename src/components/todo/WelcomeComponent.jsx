@@ -9,6 +9,7 @@ class WelcomeComponent extends Component {
         super(props)
         this.retriveWelcomeMessage = this.retriveWelcomeMessage.bind(this)
         this.handleSuccefulResponse = this.handleSuccefulResponse.bind(this)
+        this.handleError = this.handleError.bind(this)
         this.state ={
             welcomeMessage: ''
         }
@@ -46,7 +47,7 @@ class WelcomeComponent extends Component {
 
         
 
-        //.catch()
+        .catch( error => this.handleError(error))
     }
 
     handleSuccefulResponse(response) {
@@ -54,6 +55,13 @@ class WelcomeComponent extends Component {
         this.setState({
             welcomeMessage: response.data.message
         })
+    }
+
+    handleError(error) {
+        console.log(error.response)
+         this.setState({
+            welcomeMessage: error.response.data.message
+        }) 
     }
 }
 
