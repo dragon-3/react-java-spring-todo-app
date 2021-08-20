@@ -16,6 +16,7 @@ class ListTodosComponent extends Component {
             ]
             
         }
+        this.deleteTodoClicked = this.deleteTodoClicked.bind(this);
     }
 
     componentDidMount() {
@@ -29,6 +30,13 @@ class ListTodosComponent extends Component {
                 })
             }
         )
+        console.log(username);
+    }
+
+    deleteTodoClicked(id) {
+        let username = AuthenticationService.getLoggedInUserName()
+        console.log(id + " " + username)
+        
     }
 
     render() {
@@ -42,6 +50,7 @@ class ListTodosComponent extends Component {
                                 <th>description</th>
                                 <th>IsCompleted?</th>
                                 <th>Target Date</th>
+                                <th>Button</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -52,6 +61,7 @@ class ListTodosComponent extends Component {
                                         <td>{todo.description}</td>
                                         <td>{todo.done.toString()}</td>
                                         <td>{todo.targetDate.toString()}</td>
+                                        <td><button className="btn btn-warning" onClick={() => this.deleteTodoClicked(todo.id)}>Delete</button></td>
                                     </tr>
                                 )
                                 
