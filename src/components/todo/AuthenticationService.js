@@ -17,7 +17,7 @@ class AuthenticationService {
     }
 
     getLoggedInUserName() {
-        let user = sessionStorage.getItem('authenticatdUser')
+        let user = sessionStorage.getItem('authenticatedUser')
         if(user===null) return false
         return user
     }
