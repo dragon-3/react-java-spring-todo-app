@@ -23,6 +23,11 @@ class TodoDataService {
 
     }
 
+    createTodo(name, todo) {
+        return axios.post(`http://localhost:8082/users/${name}/todos/`, todo)
+
+    }
+
     
 }
 
