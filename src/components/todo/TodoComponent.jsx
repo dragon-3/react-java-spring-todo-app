@@ -11,8 +11,8 @@ class TodoComponent extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            id : 1,
-            description : 'Learn forms Now',
+            id : this.props.match.params.id,
+            description : '',
             targetDate : moment(new Date()).format('YYYY-MM-DD')
         }
 
@@ -46,6 +46,13 @@ class TodoComponent extends Component {
     }
 
     onSubmit(values) {
+        let username = AuthenticationService.getLoggedInUserName()
+        TodoDataService.updateTodo(username, this.state.id, {
+            id: this.state.id,
+            description: values.description,
+            targetDate: values.targetDate
+        }).then(() => {this.props.history.push('/todos')}
+        )
         console.log(values)
     }
 
